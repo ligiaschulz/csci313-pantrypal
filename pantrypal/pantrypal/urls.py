@@ -24,4 +24,5 @@ urlpatterns = [
     path('homepage/', include('homepage.urls')),
     path('', RedirectView.as_view(url='homepage/', permanent = True)),
     path('login/', include('login.urls')),
+    path('browse/', include('browser.urls')),
 ]

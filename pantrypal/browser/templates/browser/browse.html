@@ -3,4 +3,16 @@
 PatryPal - Browse Recipes
 {% endblock title %}
 {% block content %}
+<h1>List of Recipes:</h1>
+{% if recipe_list %}
+    <ul>
+      {% for recipe in recipe_list %}
+      <li>
+        {{recipe.recipe_name}}
+      </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no recipes right now.</p>
+  {% endif %}
 {% endblock content %}
