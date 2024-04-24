@@ -4,9 +4,8 @@ from django.contrib import messages
 
 # Create your views here.
 def index(request):
+    user_list = User.objects.all()
     return render(request, 'homepage/index.html')
-<<<<<<< Updated upstream
-=======
 
 def account_view(request,pk):
     if request.user.is_authenticated:
@@ -15,4 +14,3 @@ def account_view(request,pk):
     else:
         messages.success(request, 'you need to be logged in to see account details')
         return redirect('home')
->>>>>>> Stashed changes
