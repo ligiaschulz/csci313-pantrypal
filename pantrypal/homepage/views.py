@@ -4,13 +4,19 @@ from django.contrib import messages
 
 # Create your views here.
 def index(request):
-    user_list = User.objects.all()
     return render(request, 'homepage/index.html')
 
-def account_view(request,pk):
+def account_view(request):
     if request.user.is_authenticated:
-        current_user = User.objects.get(pk=pk)
-        return render(request, 'homepage/account.html', {'usr' : current_user})
+        
+        return render(request, 'homepage/account.html',)
     else:
         messages.success(request, 'you need to be logged in to see account details')
         return redirect('home')
+    
+def delete(request):
+    if request.user.is_authenticated:
+        return redirect('index')
+    else:
+        messages.success(request, 'you need to be logged in to delete your user')
+        return redirect('index')        
