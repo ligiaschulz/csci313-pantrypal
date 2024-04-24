@@ -10,15 +10,14 @@
         <div class="container">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                    <h5 class="card-title">{{usr.first_name}} {{usr.last_name}}</h5>
-                    <p class="card-text"><strong>Email:</strong>{{user.email}}</p>
-                    <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
-                    <a href="{% url 'delete' usr.pk %}" class="btn btn-danger">Delete</a>
-                    <a href="{% url 'update' usr.pk %}" class="btn btn-primary">Update</a>
+                    <h5 class="card-title">{{user.get_full_name}}</h5>
+                    <p class="card-text"><strong>Email: </strong>{{user.email}}</p>
+                    {% comment %} <a href="{% url 'homepage' %}" class="btn btn-secondary">Back</a> {% endcomment %}
+                    <a href="{% url 'delete'%}" class="btn btn-danger">Delete</a>
+                    {% comment %} <a href="{% url 'update' %}" class="btn btn-primary">Update</a> {% endcomment %}
                     </div>
                 </div>
         </div>            
-
 
 
 
