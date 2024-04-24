@@ -1,0 +1,15 @@
+{% extends 'homepage/base.html' %}
+{%load static%}
+{%block style%}
+<link href="{% static 'homepage/css/home.css'%}" rel='stylesheet'/>
+{% endblock style%}
+{% block title %}
+PatryPal - Recipe
+{% endblock title %}
+
+{% block content %}
+<h1 id='head'>Working Recipe Page</h1>
+{% if user.is_authenticated %}
+<h4>Hello, {{ user.get_short_name }}</h4>
+{% endif %}
+{% endblock content %}
