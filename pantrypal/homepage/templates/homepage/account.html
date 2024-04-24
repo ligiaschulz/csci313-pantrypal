@@ -1,0 +1,39 @@
+{%extends 'homepage/base.html'%}
+
+{%block title%} Account Information {%endblock title%}
+
+{%block content%}
+    <div class="container text-center">
+    <div class="row">
+        <div class="col">
+        
+        <div class="container">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                    <h5 class="card-title">{{usr.first_name}} {{usr.last_name}}</h5>
+                    <p class="card-text"><strong>Email:</strong>{{user.email}}</p>
+                    <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+                    <a href="{% url 'delete' usr.pk %}" class="btn btn-danger">Delete</a>
+                    <a href="{% url 'update' usr.pk %}" class="btn btn-primary">Update</a>
+                    </div>
+                </div>
+        </div>            
+
+
+
+
+
+
+
+            
+        </div>
+        <div class="col">
+        Column
+        </div>
+        <div class="col">
+        Column
+        </div>
+    </div>
+    </div>    
+
+{%endblock%}
