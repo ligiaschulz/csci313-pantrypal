@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.RecipeListView.as_view(), name='browse-all'),
+    path('search/', views.filter)
 ]
