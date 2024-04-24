@@ -5,13 +5,18 @@ PatryPal - Browse Recipes
 {% block content %}
 <h1>List of Recipes:</h1>
 {% if recipe_list %}
-    <ul>
       {% for recipe in recipe_list %}
-      <li>
-        {{recipe.recipe_name}}
-      </li>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{recipe.recipe_name}}</h5>
+          {% if recipe.creator %}
+          <p class="card-text"><small class="text-muted">by {{recipe.creator.get_short_name}}</small></p>
+          {% endif %}
+          <p class="card-text">{% for category in recipe.category.all %}- {{category.category_name}} -{%endfor%}</p>
+          <a href="#" class="btn btn-primary">View Recipe</a>
+        </div>
+      </div>
       {% endfor %}
-    </ul>
   {% else %}
     <p>There are no recipes right now.</p>
   {% endif %}
