@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.views import generic
-from recipe.models import Recipe, Category
+from recipe.models import Recipe, Category, Ingredient
 
 def browse_all(request):
     recipe_list = Recipe.objects.all()
     category_list = Category.objects.all()
-    context = {'recipe_list':recipe_list, 'category_list':category_list}
+    ingredient_list = Ingredient.objects.all().order_by('ingredient_name')
+    context = {'recipe_list':recipe_list, 'category_list':category_list, 'ingredient_list':ingredient_list}
     return render(request, 'browser/browse.html', context=context)
 
 def category_filter(request, pk):
