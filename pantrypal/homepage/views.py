@@ -16,6 +16,8 @@ def account_view(request):
     
 def delete(request):
     if request.user.is_authenticated:
+        del_user = request.user
+        del_user.delete()
         return redirect('index')
     else:
         messages.success(request, 'you need to be logged in to delete your user')
