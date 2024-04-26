@@ -14,3 +14,8 @@ def ingredients_view(request):
     }
     return render(request, 'recipe.html', ingredients)
 
+def recipe_instructions(request):
+    instructions = {
+        "instructions" : ['basic instructions']
+    }
+    return render(request, 'recipe.html', instructions)
