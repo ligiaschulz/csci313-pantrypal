@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Example</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Custom CSS styles */
+    .header {
+      margin-top: 20px;
+    }
+    .image {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+    {% include 'homepage/navbar.html' %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <!-- Image on the left side -->
+        <img src="your-image.jpg" alt="Image" class="image">
+      </div>
+      <div class="col-md-8">
+        <div class="header">
+          <h1>Header Text</h1>
+          <p>This is some text next to the header.</p>
+        <div class="block-text">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et ullamcorper justo. Sed condimentum, justo eget ullamcorper aliquet, ipsum sapien viverra nisl, non scelerisque dolor velit vel ex. Donec gravida ipsum at tincidunt convallis. Pellentesque ac arcu quis est lacinia laoreet.</p>
+          <p>Integer posuere purus justo, non congue elit consectetur ut. Nullam ut urna tellus. Nunc aliquam mauris et purus mattis, quis bibendum ipsum tristique. Vivamus ac turpis nec arcu aliquam tincidunt eget nec velit. Mauris id felis sed dui laoreet efficitur nec nec odio.</p>
+        </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
