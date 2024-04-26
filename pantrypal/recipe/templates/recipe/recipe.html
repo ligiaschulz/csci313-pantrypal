@@ -27,6 +27,13 @@
       <div class="col-md-8">
         <div class="header">
           <h1>Ingredients</h1>
+          <ul> 
+            {% for i in ingredients %} 
+            <div class="row"> 
+              {{ i }} 
+            </div>  
+            {% endfor %} 
+            </ul>
           <p>3 large eggs
             1 teaspoon milk, plant milk, or water
             Extra-virgin olive oil or butter, for the pan

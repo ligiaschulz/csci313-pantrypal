@@ -7,3 +7,10 @@ def index(request):
     user_list = User.objects.all()
     return render(request, 'recipe/index.html')
 
+def ingredients_view(request):
+    ingredients = {
+        "ingredients" : ['eggs', 'milk'],
+
+    }
+    return render(request, 'recipe.html', ingredients)
+
