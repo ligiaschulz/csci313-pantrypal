@@ -25,5 +25,5 @@ urlpatterns = [
     path('', RedirectView.as_view(url='homepage/', permanent = True)),
     path('login/', include('login.urls')),
     path('browse/', include('browser.urls')),
-    path('recipe/', include('recipe.urls'))
+    path('recipe/', include('recipe.urls')),
 ]
