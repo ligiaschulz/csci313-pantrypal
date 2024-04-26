@@ -48,7 +48,7 @@ PatryPal - Browse Recipes
           <p class="card-text"><small class="text-muted">by {{recipe.creator.get_short_name}}</small></p>
           {% endif %}
           <p class="card-text">{% for category in recipe.category.all %}- {{category.category_name}} -{%endfor%}</p>
-          <a href="#" class="btn btn-primary">View Recipe</a>
+          <a href="http://127.0.0.1:8000/recipe/recipe/" class="btn btn-primary">View Recipe</a>
         </div>
       </div>
       {% endfor %}
