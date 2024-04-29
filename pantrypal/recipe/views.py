@@ -8,14 +8,15 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def recipe_detail(request):
     user_list = User.objects.all()
-    return render(request, 'recipe/recipe.html')
-
-def ingredients_view(request):
+    instructions = {
+        "instructions" : ['basic instructions']
+    }
     ingredients = {
         "ingredients" : ['eggs', 'milk'],
 
     }
-    return render(request, 'recipe.html', ingredients)
+    return render(request,'recipe/recipe.html',ingredients)
+    
 
 def recipe_instructions(request):
     instructions = {
@@ -26,3 +27,5 @@ def recipe_instructions(request):
 class RecipeCreate(generic.CreateView):
     model = Recipe
     fields=['recipe_name','category', 'servings','ingredients','recipe_instructions']
+    
+
