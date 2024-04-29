@@ -22,8 +22,14 @@ class RecipeCreate(generic.CreateView):
     model = Recipe
     fields=['recipe_name','category', 'servings','ingredients','recipe_instructions']
     
+    instructions = {
+        "instructions" : ['basic instructions']
+    }
+    ingredients = {
+        "ingredients" : ['eggs', 'milk'],
 
+    }
     
     context = {'instructions':instructions, 'ingredients': ingredients}
     
-    return render(request,'recipe/recipe.html', context=context)
+    
