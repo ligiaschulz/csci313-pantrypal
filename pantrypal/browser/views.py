@@ -5,7 +5,7 @@ from .forms import SearchForm
 def browse_all(request):
     if request.method == "POST":
         form = SearchForm(request.POST)
-        cat_id = 0
+        cat_id = '0'
         ing_ids = []
         if form.is_valid():
             cat_id = form.cleaned_data["category"]
