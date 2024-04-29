@@ -18,12 +18,13 @@
             </div>                
         </div>
 
-        {%if recipe%}
+        
         <div class="col">
             <div class="container">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                     <h5 class="card-title">Saved Recipes</h5>
+                    {%if recipe%}
                         <table class = "table table-striped table-hover">
                             {%for rec in recipe%}
                                 <tr>
@@ -31,11 +32,12 @@
                                 </tr>
                             {%endfor%}
                         </table>
+                    {%endif%}
                     </div>
                 </div>        
             </div>
         </div>
-        {%endif%}
+        
 
         
         <div class="col">

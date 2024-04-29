@@ -23,7 +23,7 @@ def delete(request):
         return redirect('index')
     else:
         messages.success(request, 'you need to be logged in to delete your user')
-        return redirect('index')     
+        return redirect('index')   
 
 def update(request):
     pass
