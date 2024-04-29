@@ -13,6 +13,6 @@ def recipe_detail(request):
 
     }
     
-
+    context = {'instructions':instructions, 'ingredients': ingredients}
     
-    return render(request,'recipe/recipe.html',ingredients)
+    return render(request,'recipe/recipe.html', context=context)
