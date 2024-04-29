@@ -5,37 +5,10 @@ PatryPal - Browse Recipes
 {% block content %}
 <h1>Browse Recipes</h1>
 <h5>Filter:</h5>
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {%if selected_category%}
-    {{selected_category.category_name}}
-    {%else%}
-    Category
-    {%endif%}
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    {%if selected_category%}
-    <a class="dropdown-item" href="{%url 'browse-all'%}">None</a>
-    {%endif%}
-    {%for item in category_list %}
-    <a class="dropdown-item" href="{%url 'category-filter' item.pk%}">{{item.category_name}}</a>
-    {%endfor%}
-  </div>
-</div>
-<form action="POST">
-  <select class="form-select" aria-label="category">
-    <option selected>Category</option>
-    {%for item in category_list %}
-    <option value="{{item.pk}}">{{item.category_name}}</option>
-    {%endfor%}
-  </select>
-  <select class="form-select" multiple aria-label="ingredients">
-    <option selected>Ingredients</option>
-    {%for item in ingredient_list %}
-    <option value="{{item.pk}}">{{item.ingredient_name}}</option>
-    {%endfor%}
-  </select>
-  <button class="btn btn-primary">
+<form action='' method='post'>
+  {% csrf_token %}
+  {{form}}
+  <button class="btn btn-primary" action='submit'>
     Submit
   </button>
 </form>
