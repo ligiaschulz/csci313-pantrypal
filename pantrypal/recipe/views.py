@@ -18,12 +18,6 @@ def recipe_detail(request):
     return render(request,'recipe/recipe.html',ingredients)
     
 
-def recipe_instructions(request):
-    instructions = {
-        "instructions" : ['basic instructions']
-    }
-    return render(request, 'recipe.html', instructions)
-
 class RecipeCreate(generic.CreateView):
     model = Recipe
     fields=['recipe_name','category', 'servings','ingredients','recipe_instructions']
