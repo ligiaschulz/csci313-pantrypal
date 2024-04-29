@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 
 # Create your views here.
-def index(request):
+def recipe_detail(request):
     user_list = User.objects.all()
-    return render(request, 'recipe/index.html')
+    return render(request, 'recipe/recipe.html')
 
 def ingredients_view(request):
     ingredients = {
