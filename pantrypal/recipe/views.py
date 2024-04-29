@@ -5,17 +5,14 @@ from django.contrib import messages
 # Create your views here.
 def recipe_detail(request):
     user_list = User.objects.all()
-    return render(request, 'recipe/recipe.html')
-
-def ingredients_view(request):
+    instructions = {
+        "instructions" : ['basic instructions']
+    }
     ingredients = {
         "ingredients" : ['eggs', 'milk'],
 
     }
-    return render(request, 'recipe.html', ingredients)
+    
 
-def recipe_instructions(request):
-    instructions = {
-        "instructions" : ['basic instructions']
-    }
-    return render(request, 'recipe.html', instructions)
+    
+    return render(request,'recipe/recipe.html',ingredients)
