@@ -1,17 +1,28 @@
 from django.shortcuts import render
-from django.views import generic
 from recipe.models import Recipe, Category, Ingredient
+from .forms import SearchForm
 
 def browse_all(request):
-    recipe_list = Recipe.objects.all()
-    category_list = Category.objects.all()
-    ingredient_list = Ingredient.objects.all().order_by('ingredient_name')
-    context = {'recipe_list':recipe_list, 'category_list':category_list, 'ingredient_list':ingredient_list}
+    if request.method == "POST":
+        form = SearchForm(request.POST)
+        cat_id = 0
+        ing_ids = []
+        if form.is_valid():
+            cat_id = form.cleaned_data["category"]
+            for ing in form.cleaned_data["ingredient"]:
+                ing_ids.append(ing)
+        recipe_list = Recipe.objects.all()
+        if cat_id != '0': 
+            selected_category=Category.objects.get(pk=cat_id)
+            recipe_list = recipe_list.filter(category=selected_category)
+        if len(ing_ids)!= 0:
+            for id in ing_ids:
+                if id != '0':
+                    selected_ingredient = Ingredient.objects.get(pk=id)
+                    recipe_list = recipe_list.filter(ingredients = selected_ingredient)       
+    else:
+        recipe_list = Recipe.objects.all()
+        form = SearchForm()
+    context = {'recipe_list':recipe_list, 'form': form}
     return render(request, 'browser/browse.html', context=context)
 
-def category_filter(request, pk):
-    selected_category=Category.objects.get(pk=pk)
-    recipe_list = Recipe.objects.filter(category=selected_category)
-    category_list = Category.objects.all()
-    context = {'recipe_list':recipe_list, 'category_list':category_list, 'selected_category':selected_category}
-    return render(request, 'browser/browse.html', context=context)
