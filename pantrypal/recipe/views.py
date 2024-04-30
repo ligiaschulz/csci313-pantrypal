@@ -15,21 +15,15 @@ def recipe_detail(request):
         "ingredients" : ['eggs', 'milk'],
 
     }
-    return render(request,'recipe/recipe.html',ingredients)
+    context = {'instructions':instructions, 'ingredients': ingredients}
+    return render(request,'recipe/recipe.html',context)
     
 
 class RecipeCreate(generic.CreateView):
     model = Recipe
     fields=['recipe_name','category', 'servings','ingredients','recipe_instructions']
     
-    instructions = {
-        "instructions" : ['basic instructions']
-    }
-    ingredients = {
-        "ingredients" : ['eggs', 'milk'],
-
-    }
     
-    context = {'instructions':instructions, 'ingredients': ingredients}
+
     
     
