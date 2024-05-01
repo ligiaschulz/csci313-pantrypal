@@ -4,7 +4,7 @@
 PatryPal - Browse Recipes
 {% endblock title %}
 {% block style %}
-<link rel="stylesheet" href='{% static "browser/css/browse.css" %}'>
+<link rel="stylesheet" href="{% static 'browser/css/browser.css' %}">
 {% endblock style %}
 {% block content %}
 <h1>Browse Recipes</h1>
@@ -12,7 +12,7 @@ PatryPal - Browse Recipes
 <form action='' method='post'>
   {% csrf_token %}
   {{form}}
-  <button class="btn btn-primary" action='submit'>
+  <button class="btn btn-primary" action='submit' id='submit'>
     Submit
   </button>
 </form>

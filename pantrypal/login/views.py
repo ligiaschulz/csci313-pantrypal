@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from .forms import SignUpForm
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.forms import PasswordChangeForm
+from .forms import SignUpForm, UpdateUserForm
 
 def login_user(request):
     if request.method =="POST":
@@ -43,4 +45,17 @@ def register_user(request):
     return render(request, 'login/register.html', {'form' : form})
 
 def update(request):
-    pass
+    if request.user.is_authenticated:
+        current_user = request.user
+    form = UpdateUserForm(request.POST or None, instance = current_user)
+    if request.user.is_authenticated:
+        if request.method=="POST":
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'User record was updated successfully')
+                return redirect('index')
+        return render(request, 'login/update_user.html', {'form':form})
+    else:
+        messages.success(request, 'You have to be logged in to update your account')
+        return redirect('index')
+    
