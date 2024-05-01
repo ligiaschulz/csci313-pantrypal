@@ -1,6 +1,9 @@
 from django.db import models
 from django.conf import settings
 
+
+UNITS=(('t','tsp'),('T','Tbsp'),('c','cups'),('o','ounces'))
+
 class Ingredient(models.Model):
     ingredient_name = models.CharField(max_length=50)
     def __str__(self):
@@ -37,5 +40,4 @@ class Recipe_line(models.Model):
     recipe_id = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     ingredient_id=models.ForeignKey(Ingredient, on_delete=models.PROTECT)
     amount=models.FloatField(null=True, blank=True)
-    UNITS=(('t','tsp'),('T','Tbsp'),('c','cups'),('o','ounces'))
     unit=models.CharField(max_length=1,choices=UNITS,null=True,blank=True)

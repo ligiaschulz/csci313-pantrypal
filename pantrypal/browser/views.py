@@ -15,11 +15,10 @@ def browse_all(request):
         if cat_id != '0': 
             selected_category=Category.objects.get(pk=cat_id)
             recipe_list = recipe_list.filter(category=selected_category)
-        if len(ing_ids)!= 0:
-            for id in ing_ids:
-                if id != '0':
-                    selected_ingredient = Ingredient.objects.get(pk=id)
-                    recipe_list = recipe_list.filter(ingredients = selected_ingredient)       
+        for id in ing_ids:
+            if id != '0':
+                selected_ingredient = Ingredient.objects.get(pk=id)
+                recipe_list = recipe_list.filter(ingredients = selected_ingredient)       
     else:
         recipe_list = Recipe.objects.all()
         form = SearchForm()
