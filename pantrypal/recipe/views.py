@@ -2,21 +2,16 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.views import generic
-from .models import Recipe, Recipe_line
+from .models import Recipe, Recipe_line, Ingredient
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 
 # Create your views here.
 def recipe_detail(request):
-    user_list = User.objects.all()
-    instructions = {
-        "instructions" : ['basic instructions']
-    }
-    ingredients = {
-        "ingredients" : ['eggs', 'milk'],
-
-    }
-    context = {'instructions':instructions, 'ingredients': ingredients}
+    recipelist = Recipe.objects.all()
+    ingredients = Ingredient.objects.all()
+   
+    context = {'ingredients':ingredients}
     return render(request,'recipe/recipe.html',context)
     
 
