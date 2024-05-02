@@ -11,13 +11,13 @@ from .forms import RecipeLineForm, NewRecipeForm
 def recipe_detail(request, recipe_id):
     try:
         recipe = get_object_or_404(Recipe, pk=recipe_id)
-        ingredients = Recipe_line.objects.filter(recipe=recipe)
-        
+        ingredients = Recipe_line.objects.filter(recipe_id=recipe)
+                
         context = {
             'recipe': recipe,
             'ingredients': ingredients,
         }
-        return render(request, 'recipe/recipe_detail.html', context)
+        return render(request, 'recipe/recipe.html', context)
         
     except Recipe.DoesNotExist:
         return None
