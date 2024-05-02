@@ -17,26 +17,15 @@
   </style>
 </head>
 <body>
-    {% include 'homepage/navbar.html' %}
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-        <!-- Image on the left side -->
-        
-      </div>
-      <div class="col-md-8">
-        <div class="header">
-          <h1>Ingredients</h1>
-          {% block content %}
-          {% for instance in ingredients %}
-          <p>  {{ instance.ingredient }} </p>
-          {%  endfor %}
-          {% endblock %}
-        <div class="block-text">
-          <h1>Instructions</h1>
-
-    </div>
-  </div>
+  <h1>{{ recipe.recipe_name }}</h1>
+  <p><strong>Instructions:</strong> {{ recipe.recipe_instructions }}</p>
+  
+  <h2>Ingredients:</h2>
+  <ul>
+      {% for ingredient in ingredients %}
+          <li>{{ ingredient.ingredient.name }}</li>
+      {% endfor %}
+  </ul>
 
   <!-- Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

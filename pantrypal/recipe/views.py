@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.views import generic
@@ -6,13 +6,21 @@ from .models import Recipe, Recipe_line, Category, Ingredient
 from django.contrib.auth.decorators import login_required
 from .forms import RecipeLineForm, NewRecipeForm
 
+
 # Create your views here.
-def recipe_detail(request):
-    recipelist = Recipe.objects.all()
-    ingredients = Ingredient.objects.all()
-   
-    context = {'ingredients':ingredients}
-    return render(request,'recipe/recipe.html',context)
+def recipe_detail(request, recipe_id):
+    try:
+        recipe = get_object_or_404(Recipe, pk=recipe_id)
+        ingredients = Recipe_line.objects.filter(recipe=recipe)
+        
+        context = {
+            'recipe': recipe,
+            'ingredients': ingredients,
+        }
+        return render(request, 'recipe/recipe_detail.html', context)
+        
+    except Recipe.DoesNotExist:
+        return None
     
 
 @login_required
