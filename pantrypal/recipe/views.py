@@ -12,8 +12,8 @@ def recipe_detail(request, recipe_id):
     try:
         recipe = get_object_or_404(Recipe, pk=recipe_id)
         ingredients = Recipe_line.objects.filter(recipe_id=recipe)
-        saved_recipe = Saved_recipe.objects.filter(pk=recipe_id)
-        if(saved_recipe == recipe):
+        saved_recipe = Saved_recipe.objects.filter(recipe_id=recipe)
+        if(saved_recipe == recipe_id):
             recipe_is_saved = True
         else:
             recipe_is_saved = False
