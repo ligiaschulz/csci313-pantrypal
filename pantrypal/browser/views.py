@@ -1,6 +1,6 @@
-from django.shortcuts import render
-from recipe.models import Recipe, Category, Ingredient
-from .forms import SearchForm
+from django.shortcuts import render, redirect
+from recipe.models import Recipe, Category, Ingredient, Recipe_line
+from .forms import SearchForm, ShoppingListForm
 
 def browse_all(request):
     if request.method == "POST":
@@ -32,3 +32,21 @@ def browse_all(request):
     context = {'recipe_list':recipe_list, 'form': form}
     return render(request, 'browser/browse.html', context=context)
 
+def shopping_list(request):
+    if request.method == "POST":
+        saved_ingredients = []
+        form = ShoppingListForm(request.POST)
+        if form.is_valid():
+            selected_recipes = form.cleaned_data['recipes']   
+            for recipe in selected_recipes:
+                ingredients = Recipe_line.objects.filter(recipe_id=recipe)
+                for line in ingredients:
+                    i = line.ingredient_id
+                    saved_ingredients.append(i)
+            saved_ingredients = list(dict.fromkeys(saved_ingredients))
+            context = {'selected': selected_recipes, 'form': form, 'selected_ingredients':saved_ingredients} 
+            return render(request, 'browser/shopping_list.html', context = context)
+    else:
+        form = ShoppingListForm()
+    context = {'form':form}
+    return render(request, 'browser/shopping_list.html', context = context)

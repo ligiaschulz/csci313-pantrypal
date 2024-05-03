@@ -70,7 +70,16 @@ class RecipeAddView(generic.TemplateView):
             messages.success(self.request, "You must be logged in to create a recipe.")
             return redirect('/homepage')  
 
-    
+def add_saved_recipe(request, pk):
+    if request.user.is_authenticated:
+        recipe = Recipe.objects.get(pk=pk)
+        saved_recipe= Saved_recipe(user_id = request.user, recipe_id=recipe)
+        saved_recipe.save()
+        messages.success(request, "Succesfully saved recipe.")
+        return redirect('/recipe/%d'%pk)
+    else:
+        messages.success(request, 'You must be logged in to make account changes')
+        return redirect('/recipe/%d'%pk)
     
 
     
