@@ -10,10 +10,10 @@ class NewRecipeForm(forms.Form):
         ingredients[item.pk] = item.ingredient_name
     for item in Category.objects.all():
         categories[item.pk] = item.category_name
-    category = forms.MultipleChoiceField(label="Category", choices=categories)
-    instructions = forms.CharField(label="Instructions", max_length=500)
     recipe_name = forms.CharField(label="Recipe Name", max_length=100)
+    category = forms.MultipleChoiceField(label="Category", choices=categories)
     servings = forms.IntegerField(label="Servings")
+    instructions = forms.CharField(label="Instructions", max_length=500)
 
 class RecipeLineForm(forms.Form):
     ingredients={}
