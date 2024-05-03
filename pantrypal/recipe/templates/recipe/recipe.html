@@ -29,10 +29,10 @@
           {%endif%} </li><br></br>
       {% endfor %}
   </ul>
-  {% if recipe.users == user %}
+  {% if recipe_is_saved == True %}
     <button onclick='edit_recipe()'>Add Notes</button>
   {%endif%}
-  {% if recipe.users != user %}
+  {% if recipe_is_saved == False %}
     <button onclick='save_recipe()'>Save Recipe</button>
   {%endif%}
 

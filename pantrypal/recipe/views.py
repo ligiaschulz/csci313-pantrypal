@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.views import generic
-from .models import Recipe, Recipe_line, Category, Ingredient
+from .models import Recipe, Recipe_line, Category, Ingredient, Saved_recipe
 from django.contrib.auth.decorators import login_required
 from .forms import RecipeLineForm, NewRecipeForm, RecipeLineFormSet
 
@@ -12,10 +12,17 @@ def recipe_detail(request, recipe_id):
     try:
         recipe = get_object_or_404(Recipe, pk=recipe_id)
         ingredients = Recipe_line.objects.filter(recipe_id=recipe)
-                
+        saved_recipe = Saved_recipe.objects.filter(pk=recipe_id)
+        if(saved_recipe == recipe):
+            recipe_is_saved = True
+        else:
+            recipe_is_saved = False
+        
         context = {
             'recipe': recipe,
             'ingredients': ingredients,
+            'saved_recipe': saved_recipe,
+            'recipe_is_saved':recipe_is_saved,
         }
         return render(request, 'recipe/recipe.html', context)
         
