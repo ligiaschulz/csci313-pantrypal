@@ -1,7 +1,28 @@
 body{
     background-color: #fbe9c5!important;
+    opacity: 50px;
 }
-nav{
+
+#head {
+    color:orange;
+    text-align:center;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+button {
     background-color: #13c7f9!important;
-    color:#13c7f9!important;
+    
+}
+
+a {
+    background-color: #13c7f9!important;  
+}
+
+#navbar {
+    background-color: #13c7f9!important;
+    color: white
+}
+
+#text {
+    color: white;
 }
