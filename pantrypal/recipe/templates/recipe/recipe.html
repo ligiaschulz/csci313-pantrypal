@@ -16,17 +16,19 @@
     }
   </style>
 </head>
-<body>
+<body>  
   <h1>{{ recipe.recipe_name }}</h1>
-  <p><strong>Instructions:</strong> {{ recipe.recipe_instructions }}</p>
-  
   <h2>Ingredients:</h2>
   <ul>
       {% for ingredient in ingredients %}
-          <li>{{ ingredient.ingredient_id.ingredient_name }}</li>
+          <li>{{ ingredient.ingredient_id.ingredient_name }} {{ ingredient.amount }} {{ ingredient.get_unit_display }} <button onclick='add_to_list()'>Add Ingredient</button></li><br></br>
       {% endfor %}
   </ul>
-
+  <button onclick='save_recipe()'>Save Recipe</button><button onclick='add_all_ingredients()'>Add All Ingredients</button>
+  <h2>Instructions:</h2>
+  <div style='white-space: pre-wrap'>
+  <p> {{ recipe.recipe_instructions }}</p>
+  </div>
   <!-- Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
