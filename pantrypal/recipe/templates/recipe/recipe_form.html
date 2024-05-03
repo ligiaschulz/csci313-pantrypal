@@ -1,10 +1,14 @@
 {% extends "homepage/base.html" %}
+{% load static %}
 {% block title %}
 PantryPal - Create Recipe
 {% endblock title %}
+{%block style%}
+<link rel = "stylesheet" href = "{% static 'recipe/css/recipe_form.css'%}">
+{%endblock style%}
 {% block content %}
 <h1>Create Recipe</h1>
-<h3>Ingredients</h3>
+<h5>Ingredients</h5>
     <form id="form-container" method="POST">
         {% csrf_token %}
         {{recipe_lines.management_form}}
@@ -14,11 +18,11 @@ PantryPal - Create Recipe
         {{form.as_p}}
         </div>
         {% endfor %}
-        <button id="add-form" type="button">+</button>
+        <button class = "btn btn-success" id="add-form" type="button">+</button>
         <table>
         {{recipe_form.as_table}}
         </table>
-        <button type="submit">Create Recipe</button>
+        <button class = "btn btn-primary" type="submit">Create Recipe</button>
     </form>
     <script>
       let lineForm = document.querySelectorAll(".line-form")

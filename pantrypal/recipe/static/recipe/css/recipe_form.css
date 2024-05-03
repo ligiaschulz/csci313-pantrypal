@@ -1,0 +1,13 @@
+#add-form {
+    border-radius: 50%;
+}
+
+.line-form {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+.line-form label{
+    margin: 10px;
+}

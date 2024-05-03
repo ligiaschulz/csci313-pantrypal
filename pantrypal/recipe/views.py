@@ -57,10 +57,7 @@ class RecipeAddView(generic.TemplateView):
                 amount = form.cleaned_data["amount"]
                 unit = form.cleaned_data["unit"]
                 recipe = newRecipe
-                if unit == "":
-                    newLine = Recipe_line(ingredient_id=ingredient, recipe_id=recipe, amount=amount) 
-                else:
-                    newLine = Recipe_line(ingredient_id=ingredient, recipe_id=recipe, amount=amount, unit=unit) 
+                newLine = Recipe_line(ingredient_id=ingredient, recipe_id=recipe, amount=amount, unit=unit) 
                 newLine.save()
             return redirect('/homepage/accounts')
         return self.render_to_response({'recipe_form': recipeForm, 'recipe_lines': lineFormset})  

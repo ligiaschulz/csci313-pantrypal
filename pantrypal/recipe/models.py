@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 
 
-UNITS=(('t','tsp'),('T','Tbsp'),('c','cups'),('o','ounces'))
+UNITS=(('', 'None'),('t','tsp'),('T','Tbsp'),('c','cups'),('o','ounces'))
 
 class Ingredient(models.Model):
     ingredient_name = models.CharField(max_length=50)
