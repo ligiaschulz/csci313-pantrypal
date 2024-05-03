@@ -33,7 +33,7 @@
                         <table class = "table table-striped table-hover">
                             {%for rec in recipe%}
                                 <tr>
-                                    <td><a >{{rec.recipe_id}}</a></td>
+                                    <td><a href="{% url 'recipe-detail' rec.recipe_id.pk%}">{{rec.recipe_id}}</a></td><td><a href="{%url 'remove' rec.recipe_id.pk%}"id="remove" class="btn btn-danger">Remove</a></td>
                                 </tr>
                             {%endfor%}
                         </table>
