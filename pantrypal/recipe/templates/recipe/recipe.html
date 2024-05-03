@@ -29,12 +29,13 @@
           {%endif%} </li><br></br>
       {% endfor %}
   </ul>
-  {% if recipe_is_saved == True %}
-    <button onclick='edit_recipe()'>Add Notes</button>
-  {%endif%}
-  {% if recipe_is_saved == False and user.is_authenticated%}
-    <a class='btn btn-primary' href="{%url 'save-recipe' recipe.pk%}">Save Recipe</a>
-  {%endif%}
+  {% if user.is_authenticated %}
+  {% if recipe_is_saved %}
+    <button onclick="edit_recipe()">Add Notes</button>
+  {% else %}
+    <a class="btn btn-primary" href="{% url 'save-recipe' recipe.pk %}">Save Recipe</a>
+  {% endif %}
+  {% endif %}
 
   <h2>Instructions:</h2>
   <div style='white-space: pre-wrap'>

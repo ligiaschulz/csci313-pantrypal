@@ -82,5 +82,10 @@ def add_saved_recipe(request, pk):
         return redirect('/recipe/%d'%pk)
     
 
-    
+def has_saved_recipe(request, recipe_id):
+    if request.user.is_authenticated:
+        saved_recipe = Saved_recipe.objects.filter(user_id=request.user, recipe_id=recipe_id).exists()
+        return saved_recipe
+    return False
+
     
