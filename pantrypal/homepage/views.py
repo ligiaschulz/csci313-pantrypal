@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
-from recipe.models import Saved_recipe
+from recipe.models import Saved_recipe, Recipe
 
 # Create your views here.
 def index(request):
@@ -27,3 +27,10 @@ def delete(request):
 
 def update(request):
     pass
+
+def remove_saved_recipe(request, pk):
+    recipe = Recipe.objects.get(pk=pk)
+    saved_recipe= Saved_recipe.objects.get(user_id = request.user, recipe_id=recipe)
+    saved_recipe.delete()
+    messages.success(request, "Succesfully removed recipe.")
+    return redirect(account_view)

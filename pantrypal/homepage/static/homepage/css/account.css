@@ -8,3 +8,12 @@
 #add {
     font-size: large;
 }
+
+#remove {
+    font-size: smaller;
+    align-self: end;
+}
+
+td{
+    align-content: center;
+}
