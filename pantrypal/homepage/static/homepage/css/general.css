@@ -1,6 +1,7 @@
 body{
-    background-color: #fbe9c5;
+    background-color: #fbe9c5!important;
 }
 nav{
-    background-color: #13c7f9;
+    background-color: #13c7f9!important;
+    color:#13c7f9!important;
 }
