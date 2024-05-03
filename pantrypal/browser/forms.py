@@ -11,6 +11,7 @@ class SearchForm(forms.Form):
         categories[item.pk] = item.category_name
     category = forms.ChoiceField(label="Category", choices=categories)
     ingredient = forms.MultipleChoiceField(label="Ingredients",  choices=ingredients)
+    exclude = forms.MultipleChoiceField(label="Ingredients Excluded", choices=ingredients)
 
     
     
