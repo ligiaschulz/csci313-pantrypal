@@ -24,10 +24,18 @@
   <h2>Ingredients:</h2>
   <ul>
       {% for ingredient in ingredients %}
-          <li>{{ ingredient.ingredient_id.ingredient_name }} {{ ingredient.amount }} {{ ingredient.get_unit_display }} <button onclick='add_to_list()'>Add Ingredient</button></li><br></br>
+          <li>{{ ingredient.ingredient_id.ingredient_name }} {{ ingredient.amount }} {% if ingredient.get_unit_display != None %}
+            {{ ingredient.get_unit_display }}
+          {%endif%} </li><br></br>
       {% endfor %}
   </ul>
-  <button onclick='save_recipe()'>Save Recipe</button><button onclick='add_all_ingredients()'>Add All Ingredients</button>
+  {% if recipe.users == user %}
+    <button onclick='edit_recipe()'>Add Notes</button>
+  {%endif%}
+  {% if recipe.users != user %}
+    <button onclick='save_recipe()'>Save Recipe</button>
+  {%endif%}
+
   <h2>Instructions:</h2>
   <div style='white-space: pre-wrap'>
   <p> {{ recipe.recipe_instructions }}</p>
