@@ -12,23 +12,17 @@ def recipe_detail(request, recipe_id):
     try:
         recipe = get_object_or_404(Recipe, pk=recipe_id)
         ingredients = Recipe_line.objects.filter(recipe_id=recipe)
-        saved_recipe = Saved_recipe.objects.filter(recipe_id=recipe)
-        if(saved_recipe == recipe_id):
-            recipe_is_saved = True
-        else:
-            recipe_is_saved = False
-        
+
         context = {
             'recipe': recipe,
             'ingredients': ingredients,
-            'saved_recipe': saved_recipe,
-            'recipe_is_saved':recipe_is_saved,
         }
         return render(request, 'recipe/recipe.html', context)
         
     except Recipe.DoesNotExist:
         return None
     
+
 
 
 
