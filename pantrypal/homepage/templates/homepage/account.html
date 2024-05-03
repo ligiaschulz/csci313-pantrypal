@@ -51,7 +51,11 @@
                     <div class="card-body">
                     <h5 class="card-title">Shopping List</h5>
                         <table class = "table table-striped table-hover">
-                            
+                           {% for r in test%}
+                                <tr>
+                                    <td><a >{{r.recipe_id}}</a></td>
+                                </tr>
+                            {%endfor%}
                         </table>
                     </div>
                 </div>        

@@ -1,5 +1,5 @@
 from django import forms
-from recipe.models import Category, Ingredient
+from recipe.models import Category, Ingredient,Recipe
 
 class SearchForm(forms.Form):
     
@@ -13,6 +13,7 @@ class SearchForm(forms.Form):
     ingredient = forms.MultipleChoiceField(label="Ingredients",  choices=ingredients)
     exclude = forms.MultipleChoiceField(label="Ingredients Excluded", choices=ingredients)
 
-    
+class ShoppingListForm(forms.Form):
+    recipes = forms.ModelMultipleChoiceField(queryset= Recipe.objects.all(), widget = forms.CheckboxSelectMultiple)
     
     
