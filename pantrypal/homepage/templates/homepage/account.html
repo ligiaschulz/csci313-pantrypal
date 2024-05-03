@@ -1,5 +1,10 @@
 {%extends 'homepage/base.html'%}
 
+{%load static%}
+{%block style%}
+<link href="{% static 'homepage/css/account.css'%}" rel='stylesheet'/>
+{% endblock style%}
+
 {%block title%} Account Information {%endblock title%}
 
 {%block content%}
@@ -23,7 +28,7 @@
             <div class="container">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                    <h5 class="card-title">Saved Recipes</h5>
+                    <h5 class="card-title">Saved Recipes</h5> <a href="{% url 'recipe-create'%}" class="btn btn-light btn-sm" id = "add"><strong>+</strong></a>
                     {%if recipe%}
                         <table class = "table table-striped table-hover">
                             {%for rec in recipe%}

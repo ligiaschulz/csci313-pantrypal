@@ -2,6 +2,7 @@ from django import forms
 from recipe.models import Category, Ingredient, UNITS
 
 
+
 class NewRecipeForm(forms.Form):  
     categories={}
     ingredients={}
@@ -21,3 +22,5 @@ class RecipeLineForm(forms.Form):
     ingredient = forms.ChoiceField(label="Ingredient",  choices=ingredients)
     amount = forms.FloatField()
     unit = forms.ChoiceField(label = "Unit", choices=UNITS)
+
+RecipeLineFormSet = forms.formset_factory(RecipeLineForm)
