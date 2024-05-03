@@ -1,5 +1,5 @@
 body{
-    background-color: #fbe9c5!important;
+    background-color:#fbe9c5!important;
     opacity: 50px;
 }
 
@@ -14,7 +14,7 @@ button {
     
 }
 
-a {
+#button {
     background-color: #13c7f9!important;  
 }
 
@@ -25,4 +25,12 @@ a {
 
 #text {
     color: white;
+}
+#registration {
+    background-color: rgb(241, 212, 154)!important;
+}
+
+#card{
+    background-color: rgba(245, 222, 178, 0.493) ;
+    color: black;
 }

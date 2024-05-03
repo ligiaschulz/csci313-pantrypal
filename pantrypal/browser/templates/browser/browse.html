@@ -12,22 +12,25 @@ PatryPal - Browse Recipes
 <form action='' method='post'>
   {% csrf_token %}
   {{form}}
+  <p></p>
   <button class="btn btn-primary" action='submit' id='submit'>
     Submit
   </button>
+  <br></br>
 </form>
 {% if recipe_list %}
       {% for recipe in recipe_list %}
       <div class="card">
-        <div class="card-body">
+        <div class="card-body" id="card">
           <h5 class="card-title">{{recipe.recipe_name}}</h5>
           {% if recipe.creator %}
           <p class="card-text"><small class="text-muted">by {{recipe.creator.get_short_name}}</small></p>
           {% endif %}
           <p class="card-text">{% for category in recipe.category.all %}- {{category.category_name}} -{%endfor%}</p>
-          <a href="{% url 'recipe-detail' recipe.pk%}" class="btn btn-primary">View Recipe</a>
+          <a href="{% url 'recipe-detail' recipe.pk%}" class="btn btn-primary"id='button'>View Recipe</a>
         </div>
       </div>
+      <p></p>
       {% endfor %}
   {% else %}
     <p>There are no recipes right now.</p>
