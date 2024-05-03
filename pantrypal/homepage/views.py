@@ -29,8 +29,12 @@ def update(request):
     pass
 
 def remove_saved_recipe(request, pk):
-    recipe = Recipe.objects.get(pk=pk)
-    saved_recipe= Saved_recipe.objects.get(user_id = request.user, recipe_id=recipe)
-    saved_recipe.delete()
-    messages.success(request, "Succesfully removed recipe.")
-    return redirect(account_view)
+    if request.user.is_authenticated:
+        recipe = Recipe.objects.get(pk=pk)
+        saved_recipe= Saved_recipe.objects.get(user_id = request.user, recipe_id=recipe)
+        saved_recipe.delete()
+        messages.success(request, "Succesfully removed recipe.")
+        return redirect(account_view)
+    else:
+        messages.success(request, 'You must be logged in to make account changes')
+        return redirect(index)
