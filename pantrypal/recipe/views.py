@@ -45,8 +45,8 @@ class RecipeAddView(generic.TemplateView):
             servings = recipeForm.cleaned_data['servings']
             creator = self.request.user
             newRecipe = Recipe(recipe_name=recipe_name, recipe_instructions=instructions, servings=servings, creator=creator)
-            newRecipe.save() 
-            newRecipe.save() 
+            newRecipe.save()
+            newRecipe.users.add(creator)
             for id in categories:
                 cat = Category.objects.get(pk=id)
                 newRecipe.category.add(cat)
@@ -57,7 +57,10 @@ class RecipeAddView(generic.TemplateView):
                 amount = form.cleaned_data["amount"]
                 unit = form.cleaned_data["unit"]
                 recipe = newRecipe
-                newLine = Recipe_line(ingredient_id=ingredient, recipe_id=recipe, amount=amount, unit=unit) 
+                if unit == "":
+                    newLine = Recipe_line(ingredient_id=ingredient, recipe_id=recipe, amount=amount) 
+                else:
+                    newLine = Recipe_line(ingredient_id=ingredient, recipe_id=recipe, amount=amount, unit=unit) 
                 newLine.save()
             return redirect('/homepage/accounts')
         return self.render_to_response({'recipe_form': recipeForm, 'recipe_lines': lineFormset})  
