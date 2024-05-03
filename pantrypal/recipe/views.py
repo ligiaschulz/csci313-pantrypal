@@ -12,7 +12,6 @@ def recipe_detail(request, recipe_id):
     try:
         recipe = get_object_or_404(Recipe, pk=recipe_id)
         ingredients = Recipe_line.objects.filter(recipe_id=recipe)
-       
                 
         context = {
             'recipe': recipe,
