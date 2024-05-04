@@ -13,7 +13,7 @@ class NewRecipeForm(forms.Form):
     recipe_name = forms.CharField(label="Recipe Name", max_length=100)
     category = forms.MultipleChoiceField(label="Category", choices=categories)
     servings = forms.IntegerField(label="Servings")
-    instructions = forms.CharField(label="Instructions", max_length=500)
+    instructions = forms.CharField(label="Instructions", max_length=500, widget=forms.Textarea)
 
 class RecipeLineForm(forms.Form):
     ingredients={}
@@ -24,3 +24,6 @@ class RecipeLineForm(forms.Form):
     unit = forms.ChoiceField(label = "Unit", choices=UNITS)
 
 RecipeLineFormSet = forms.formset_factory(RecipeLineForm)
+
+class NotesForm(forms.Form):
+    notes = forms.CharField(max_length=500, widget=forms.Textarea)

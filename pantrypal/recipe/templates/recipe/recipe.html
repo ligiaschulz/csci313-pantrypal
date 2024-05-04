@@ -1,25 +1,8 @@
 {%extends 'homepage/base.html'%}
-
+{%block title%}
+{{ recipe.recipe_name }}
+{%endblock title%}
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ recipe.recipe_name }}</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    /* Custom CSS styles */
-    .header {
-      margin-top: 20px;
-    }
-    .image {
-      max-width: 100%;
-    }
-  </style>
-</head>
-<body>  
   <h1>{{ recipe.recipe_name }}</h1>
   <h2>Ingredients:</h2>
   <ul>
@@ -29,22 +12,20 @@
           {%endif%} </li><br></br>
       {% endfor %}
   </ul>
-  {% if user.is_authenticated %}
-  {% if recipe_is_saved %}
-    <button onclick="edit_recipe()">Add Notes</button>
-  {% else %}
-    <a class="btn btn-primary" href="{% url 'save-recipe' recipe.pk %}">Save Recipe</a>
-  {% endif %}
-  {% endif %}
+  
 
   <h2>Instructions:</h2>
   <div style='white-space: pre-wrap'>
   <p> {{ recipe.recipe_instructions }}</p>
   </div>
-  <!-- Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+  {% if user.is_authenticated %}
+  {% if recipe_is_saved %}
+    {%csrf_token%}
+    {{form.as_p}}
+    <button action="submit">Add Notes</button>
+  {% else %}
+    <a class="btn btn-primary" href="{% url 'save-recipe' recipe.pk %}">Save Recipe</a>
+  {% endif %}
+  {% endif %}
+
 {% endblock content %}

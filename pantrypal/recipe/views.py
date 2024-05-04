@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.views import generic
 from .models import Recipe, Recipe_line, Category, Ingredient, Saved_recipe
 from django.contrib.auth.decorators import login_required
-from .forms import RecipeLineForm, NewRecipeForm, RecipeLineFormSet
+from .forms import RecipeLineForm, NewRecipeForm, RecipeLineFormSet, NotesForm
 
 
 # Create your views here.
@@ -12,10 +12,29 @@ def recipe_detail(request, recipe_id):
     try:
         recipe = get_object_or_404(Recipe, pk=recipe_id)
         ingredients = Recipe_line.objects.filter(recipe_id=recipe)
+        recipe_is_saved = False
+        saved_recipe=Saved_recipe()
+        if request.user.is_authenticated:
+            recipe_is_saved = has_saved_recipe(recipe, request.user)
+            saved_recipe = Saved_recipe.objects.get(user_id=request.user, recipe_id=recipe)
+        if request.method == "POST":
+            if recipe_is_saved:
+                form = NotesForm(request.POST)
+                if form.is_valid():
+                    notes=form.cleaned_data["notes"]
+                    saved_recipe = Saved_recipe.objects.get(user_id=request.user, recipe_id=recipe)
+                    saved_recipe.notes=notes
+                    saved_recipe.save(update_fields=["notes"])
+                    messages.success(request, "Notes have been updated.")
+            else:
+                messages.success(request, "You must be logged and have the recipe saved to add notes.")
 
+        form = NotesForm(initial={'notes':saved_recipe.notes})          
         context = {
             'recipe': recipe,
             'ingredients': ingredients,
+            'recipe_is_saved': recipe_is_saved,
+            'form': form
         }
         return render(request, 'recipe/recipe.html', context)
         
@@ -23,7 +42,13 @@ def recipe_detail(request, recipe_id):
         return None
     
 
-
+def add_notes(request, recipe_id):
+    if request.user.is_authenticated:
+        #add the notes
+        return redirect('/recipe/%d'%recipe_id)
+    else:
+        messages.success(request, "You must be logged in to add notes.")
+        return redirect('/recipe/%d'%recipe_id)
 
 
 class RecipeAddView(generic.TemplateView):
@@ -61,10 +86,9 @@ class RecipeAddView(generic.TemplateView):
                     ingredient = Ingredient.objects.get(pk=ingredient_id)
                     amount = form.cleaned_data["amount"]
                     unit = form.cleaned_data["unit"]
-                    recipe = newRecipe
-                    newLine = Recipe_line(ingredient_id=ingredient, recipe_id=recipe, amount=amount, unit=unit) 
+                    newLine = Recipe_line(ingredient_id=ingredient, recipe_id=newRecipe, amount=amount, unit=unit) 
                     newLine.save()
-                return redirect('/homepage/accounts')
+                return redirect('/recipe/%d'%newRecipe.pk)
             return self.render_to_response({'recipe_form': recipeForm, 'recipe_lines': lineFormset})
         else:
             messages.success(self.request, "You must be logged in to create a recipe.")
@@ -78,14 +102,12 @@ def add_saved_recipe(request, pk):
         messages.success(request, "Succesfully saved recipe.")
         return redirect('/recipe/%d'%pk)
     else:
-        messages.success(request, 'You must be logged in to make account changes')
+        messages.success(request, 'You must be logged in to save a recipe')
         return redirect('/recipe/%d'%pk)
     
 
-def has_saved_recipe(request, recipe_id):
-    if request.user.is_authenticated:
-        saved_recipe = Saved_recipe.objects.filter(user_id=request.user, recipe_id=recipe_id).exists()
-        return saved_recipe
-    return False
+def has_saved_recipe(recipe, user):
+    saved_recipe = Saved_recipe.objects.filter(user_id=user, recipe_id=recipe).exists()
+    return saved_recipe
 
     
