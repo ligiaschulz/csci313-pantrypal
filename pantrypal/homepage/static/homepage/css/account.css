@@ -14,6 +14,16 @@
     align-self: end;
 }
 
-td{
+td {
     align-content: center;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.row {
+    margin-top: 20px;
+    margin-left: 200px;
 }

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout,update_session_auth_hash
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.forms import PasswordChangeForm
 from .forms import SignUpForm, UpdateUserForm
@@ -58,4 +58,3 @@ def update(request):
     else:
         messages.success(request, 'You have to be logged in to update your account')
         return redirect('index')
-    

@@ -1,36 +1,47 @@
-body{
-    background-color:#fbe9c5!important;
+body {
+    background-color: #FBE9C5 !important;
     opacity: 50px;
 }
 
 #head {
-    color:orange;
-    text-align:center;
+    color: orange;
+    text-align: center;
     font-family: Arial, Helvetica, sans-serif;
-    
+
 }
+
 button {
-    background-color: #13c7f9!important;
-    
+    background-color: #13C7F9 !important;
+
 }
 
 #button {
-    background-color: #13c7f9!important;  
+    background-color: #13C7F9 !important;
 }
 
 #navbar {
-    background-color: #13c7f9!important;
+    background-color: #13C7F9 !important;
     color: white
 }
 
 #text {
     color: white;
 }
+
 #registration {
-    background-color: rgb(241, 212, 154)!important;
+    background-color: #FBE9C5 !important;
+    border-color: #FBE9C5 !important;
 }
 
-#card{
-    background-color: rgba(245, 222, 178, 0.493) ;
+#card {
+    background-color: rgba(245, 222, 178, 0.493);
     color: black;
+}
+
+#login {
+    margin-top: 20px;
+}
+
+#logo {
+    border-radius: 15px;
 }
