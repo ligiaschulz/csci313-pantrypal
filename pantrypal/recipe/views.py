@@ -16,13 +16,13 @@ def recipe_detail(request, recipe_id):
         saved_recipe=Saved_recipe()
         if request.user.is_authenticated:
             recipe_is_saved = has_saved_recipe(recipe, request.user)
-            saved_recipe = Saved_recipe.objects.get(user_id=request.user, recipe_id=recipe)
+            if recipe_is_saved:
+                saved_recipe = Saved_recipe.objects.get(user_id=request.user, recipe_id=recipe)
         if request.method == "POST":
             if recipe_is_saved:
                 form = NotesForm(request.POST)
                 if form.is_valid():
                     notes=form.cleaned_data["notes"]
-                    saved_recipe = Saved_recipe.objects.get(user_id=request.user, recipe_id=recipe)
                     saved_recipe.notes=notes
                     saved_recipe.save(update_fields=["notes"])
                     messages.success(request, "Notes have been updated.")
