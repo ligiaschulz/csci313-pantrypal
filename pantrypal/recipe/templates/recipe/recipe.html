@@ -23,10 +23,11 @@
     <form action='' method='post'>
       {% csrf_token %}
       {{form}}
-      <button class="btn btn-primary" action='submit'>Add Notes</button>
+      <br></br>
+      <button class="btn btn-primary" action='submit' id='button'>Add Notes</button>
     </form>
   {% else %}
-    <a class="btn btn-primary" href="{% url 'save-recipe' recipe.pk %}">Save Recipe</a>
+    <a class="btn btn-primary" href="{% url 'save-recipe' recipe.pk %}" id='button'>Save Recipe</a>
   {% endif %}
   {% endif %}
 
