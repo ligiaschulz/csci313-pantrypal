@@ -21,7 +21,7 @@ class RecipeLineForm(forms.Form):
         ingredients[item.pk] = item.ingredient_name
     ingredient = forms.ChoiceField(label="Ingredient",  choices=ingredients)
     amount = forms.FloatField()
-    unit = forms.ChoiceField(label = "Unit", choices=UNITS)
+    unit = forms.ChoiceField(label = "Unit", choices=UNITS, required=False)
 
 RecipeLineFormSet = forms.formset_factory(RecipeLineForm)
 
