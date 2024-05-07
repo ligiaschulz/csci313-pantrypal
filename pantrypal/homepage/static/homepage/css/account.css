@@ -27,3 +27,11 @@ h2 {
     margin-top: 20px;
     margin-left: 200px;
 }
+
+#update {
+    background-color: #13C7F9 !important;
+}
+
+#delete_button {
+    background-color: #ac4a4a !important;
+}

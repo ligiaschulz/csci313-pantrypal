@@ -10,7 +10,7 @@ body {
 
 }
 
-button {
+button:not(.btn-close) {
     background-color: #13C7F9 !important;
 
 }
