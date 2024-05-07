@@ -88,6 +88,7 @@ class RecipeAddView(generic.TemplateView):
                     unit = form.cleaned_data["unit"]
                     newLine = Recipe_line(ingredient_id=ingredient, recipe_id=newRecipe, amount=amount, unit=unit) 
                     newLine.save()
+                messages.success(self.request, "Recipe created successfully.")
                 return redirect('/recipe/%d'%newRecipe.pk)
             return self.render_to_response({'recipe_form': recipeForm, 'recipe_lines': lineFormset})
         else:
